@@ -3,8 +3,8 @@ const PORT = process.env.PORT || 7777
 const morgan = require('morgan');
 
 // routes
-const users = require('./routes/user_route');
-const home = require('./routes/home_route');
+// const users = require('./routes/user_route');
+// const home = require('./routes/home_route');
 
 
 //mongodb
@@ -22,7 +22,6 @@ app.use(express.json())
 app.use(express.static('public'));
 app.use(morgan('tiny'));
 
-app.use('/users', users);
-app.use('/', home);
+app.use('/', require("./routes/routes"));
 
 app.listen(PORT , ()=>{console.log(PORT);})
