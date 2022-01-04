@@ -14,7 +14,11 @@ module.exports = {
         const newUser = {
             name: req.body.name,
             password: req.body.password,
-            phone: req.body.phone
+            phone: req.body.phone,
+            followers: 0,
+            following: 0,
+            kollektion: 0,
+            other: 0
         }
     
         const oldUser = await User.findOne({ phone: req.body.phone })
@@ -25,14 +29,13 @@ module.exports = {
     
             const user = new User(newUser)
             const saveUser = await user.save()
-    
+            console.log(saveUser);
             res.status(200).json(saveUser);
         }
     },
     //login uchun 
     LOGIN:async (req, res) => {
         const newUser = {
-           // name: req.body.name,
             password: req.body.password,
             phone: req.body.phone
         }
@@ -40,7 +43,7 @@ module.exports = {
         const oldUser = await User.findOne(newUser)
     console.log(oldUser);
         if(oldUser){
-            res.status(200).json('succesfull')
+            res.status(200).json(oldUser)
         }else{
             res.status(400).json("error")
         }
