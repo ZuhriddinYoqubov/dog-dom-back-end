@@ -20,29 +20,29 @@ module.exports = {
         const oldUser = await User.findOne({ phone: req.body.phone })
     
         if (oldUser) {
-            res.json("bunday user phone bor!")
+            res.status(400).json("error")
         } else {
     
             const user = new User(newUser)
             const saveUser = await user.save()
     
-            res.json(saveUser);
+            res.status(200).json(saveUser);
         }
     },
     //login uchun 
     LOGIN:async (req, res) => {
         const newUser = {
-            name: req.body.name,
+           // name: req.body.name,
             password: req.body.password,
             phone: req.body.phone
         }
-    
+    // tekshirish
         const oldUser = await User.findOne(newUser)
     console.log(oldUser);
         if(oldUser){
             res.status(200).json('succesfull')
         }else{
-            res.json("error")
+            res.status(400).json("error")
         }
     }
 
